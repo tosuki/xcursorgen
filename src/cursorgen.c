@@ -67,10 +67,10 @@ int create_xcursor_file(const char *img_path, uint32_t xhot, uint32_t yhot,
   fwrite(&xcursor_image_header, sizeof(xcursor_image_header), 1, out_file);
 
   for (int i = 0; i < (img_w * img_h); i++) {
-    uint8_t r = raw_pixels[i + 4 + 0];
-    uint8_t g = raw_pixels[i + 4 + 1];
-    uint8_t b = raw_pixels[i + 4 + 2];
-    uint8_t a = raw_pixels[i + 4 + 3];
+    uint8_t r = raw_pixels[i*4+ 0];
+    uint8_t g = raw_pixels[i*4+ 1];
+    uint8_t b = raw_pixels[i*4+ 2];
+    uint8_t a = raw_pixels[i*4+ 3];
 
     uint32_t pixel = pack_argb_premultiplied(r, g, b, a);
     fwrite(&pixel, sizeof(uint32_t), 1, out_file);
