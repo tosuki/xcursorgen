@@ -2,6 +2,7 @@
 #define CURSORGEN_H
 
 #define XCURSOR_SIGNATURE 0x72756358 // Xcur in hexadecimal
+#define XCURSOR_IMAGE_TYPE 0xfffd0002
 
 #include <stdint.h>
 
@@ -30,5 +31,20 @@ typedef struct {
   uint32_t y_hot;
   uint32_t delay; // 0 for static
 } t_xcursor_image_h;
+
+
+// ┌───────────────────────────────┐
+// │ Cabeçalho do Arquivo (Header) │
+// ├───────────────────────────────┤
+// │ Índice de Blocos (TOC)        │ 
+// ├───────────────────────────────┤
+// │ Bloco de Imagem 1             │ 
+// ├───────────────────────────────┤
+// │ Bloco de Imagem 2 (outro DPI) │ 
+// ├───────────────────────────────┤
+// │ Bloco de Imagem 3 (próx. frame│
+// └───────────────────────────────┘
+int create_xcursor_file(const char *img_path, uint32_t xhot, uint32_t yhot,
+                         uint32_t delay, const char *out_path);
 
 #endif
