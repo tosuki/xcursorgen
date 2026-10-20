@@ -1,5 +1,6 @@
 CC        := cc
-CFLAGS    := -std=c11 -Wall -Wextra -Wpedantic -g
+CFLAGS    := -std=c11 -Wall -Wextra -Wpedantic -g -Iinclude
+LDFLAGS   := -lm
 
 TARGET    := main
 SRC_DIR   := src
@@ -15,7 +16,7 @@ BIN       := $(BIN_DIR)/$(TARGET)
 all: $(BIN)
 
 $(BIN): $(OBJS) | $(BIN_DIR)
-	$(CC) $^ -o $@
+	$(CC) $^ -o $@ $(LDFLAGS)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
